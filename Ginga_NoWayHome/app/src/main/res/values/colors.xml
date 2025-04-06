@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tonos azules modernos -->
+    <color name="blue_200">#90CAF9</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_700">#1976D2</color>
+
+    <!-- Verde agua / turquesa -->
+    <color name="teal_200">#80DEEA</color>
+    <color name="teal_700">#00796B</color>
+
+    <!-- Colores neutros -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_background">#F5F5F5</color>
+    <color name="gray_text">#757575</color>
+
+    <!-- Color para botón activo o marcador destacado -->
+    <color name="accent_orange">#FF9800</color>
+</resources>
