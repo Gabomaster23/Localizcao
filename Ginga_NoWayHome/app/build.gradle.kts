@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.ginga_nowayhome"
-        minSdk = 35
+        minSdk = 33
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

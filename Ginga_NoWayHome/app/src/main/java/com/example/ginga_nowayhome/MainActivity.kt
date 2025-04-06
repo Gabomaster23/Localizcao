@@ -112,7 +112,7 @@ fun MapWithRoutesScreen() {
     fun generarRuta(inicio: String, destino: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val api = getRetrofit().create(ApiService::class.java)
-            val respuesta = api.getRoute("Es mi key >:", inicio, destino)
+            val respuesta = api.getRoute("5b3ce3597851110001cf62480181b45d1a924d79ae1d3dfd66e73e30", inicio, destino)
             if (respuesta.isSuccessful) {
                 val datos = respuesta.body()
                 val coords = datos?.features?.firstOrNull()?.geometry?.coordinates ?: emptyList()
@@ -205,7 +205,7 @@ fun MapWithRoutesScreen() {
         Box(modifier = Modifier.fillMaxSize()) {
             AndroidView(factory = { mapa }, modifier = Modifier.fillMaxSize())
 
-            // Botón para centrar
+            // Botón para centrar ubicación
             FloatingActionButton(
                 onClick = {
                     ubicacionUsuario?.let { mapa.controller.setCenter(it) }
@@ -216,6 +216,29 @@ fun MapWithRoutesScreen() {
                     .padding(16.dp)
             ) {
                 Text("📍")
+            }
+
+            // Botón para ir al punto seleccionado (ruta más corta)
+            Button(
+                onClick = {
+                    borrarRuta()
+                    val destino = coordenadasSeleccionadas.value
+                    val origen = ubicacionUsuario
+                    if (origen != null && destino != null) {
+                        generarRuta("${origen.longitude},${origen.latitude}", "${destino.longitude},${destino.latitude}")
+                    }
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(id = R.color.teal_700),
+                    contentColor = colorResource(id = R.color.white)
+                ),
+                shape = CircleShape,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(start = 16.dp, bottom = 80.dp)
+                    .height(48.dp)
+            ) {
+                Text("🧭")
             }
 
             // Botón para establecer casa
